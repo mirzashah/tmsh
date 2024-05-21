@@ -15,7 +15,7 @@
   <link name="base_footprint_tilted">
     <visual>
       <geometry>
-        <mesh filename="package://tmsh/t3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="https://raw.githubusercontent.com/mirzashah/tmsh/main/t3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="grey">
         <color rgba="0.65 0.65 0.65 1"/>
