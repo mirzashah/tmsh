@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="tally">
+  <link name="base_footprint">
+  </link>
+  <joint name="base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="base_footprint_tilted"/>
+  </joint>
+  <joint name="base_joint2" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.0750"/>
+    <parent link="base_footprint_tilted"/>
+    <child link="base_link"/>
+  </joint>
+  <link name="base_footprint_tilted">
+    <visual>
+      <geometry>
+        <mesh filename="https://raw.githubusercontent.com/mirzashah/tmsh/main/t35.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.65 0.65 0.65 1"/>
+      </material>
+      <origin rpy="-1.5707963267948966 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+  <link name="base_link">
+  </link>
+  <!-- IMU: base_link -> imu_link
+  -->
+  <link name="imu_link">
+  </link>
+  <joint name="imu_joint" type="fixed">
+    <axis xyz="0 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.0614 0.0 0.22642"/>
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+  </joint>
+  <link name="usb_imu_link">
+  </link>
+  <joint name="usb_imu_joint" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="-0.03575 0.0 0.68481 "/>
+    <parent link="base_link"/>
+    <child link="usb_imu_link"/>
+  </joint>
+  <!-- LIDAR: base_link -> base_laser_link
+       x = 42.58 mm
+       y = 0 mm
+       z = 275 mm from ground, so 275 - 75.0 = 200.0 mm
+       roll = 180 deg = PI/2 as we flip upside down
+  -->
+  <link name="base_laser_link">
+  </link>
+  <joint name="base_laser_joint" type="fixed">
+    <origin rpy="3.14159265359 0 0" xyz="0.04258 0.0 0.200"/>
+    <parent link="base_link"/>
+    <child link="base_laser_link"/>
+  </joint>
+  <!-- camera1 = Bottom D415 RGBD sensor facing up (ceiling)
+  -->
+  <joint name="camera1_joint" type="fixed">
+    <origin rpy="0 -0.994837673636768 0" xyz="0.04726 0.0175 0.33805"/>
+    <parent link="base_link"/>
+    <child link="camera1_link"/>
+  </joint>
+  <link name="camera1_link">
+  </link>
+  <!-- camera2 = Center D435 RGBD sensor facing straight forward (front)
+  -->
+  <joint name="camera2_joint" type="fixed">
+    <origin rpy="0 0.226892802759263 0" xyz="0.028 0.0175 0.74691"/>
+    <parent link="base_link"/>
+    <child link="camera2_link"/>
+  </joint>
+  <link name="camera2_link">
+  </link>
+  <!-- camera3 = Top D415 RGBD sensor facing down (floor)
+  -->
+  <joint name="camera3_joint" type="fixed">
+    <origin rpy="0 1.11701072127637 0" xyz="0.04726 0.02 0.78544"/>
+    <parent link="base_link"/>
+    <child link="camera3_link"/>
+  </joint>
+  <link name="camera3_link">
+  </link>
+  <!-- camera4 = Rear bottom D435 RGBD sensor facing downwards (rear)
+  -->
+  <joint name="camera4_joint" type="fixed">
+    <origin rpy="0 -3.82227106186758 0" xyz="-0.071 0.0175 0.34464"/>
+    <parent link="base_link"/>
+    <child link="camera4_link"/>
+  </joint>
+  <link name="camera4_link">
+   </link>
+  <!-- camera5 = Right side D435 RGBD sensor facing floor (right downward)
+   -->
+  <joint name="camera5_joint" type="fixed">
+    <origin rpy="1.5707963267949 0.523598775598299 -1.5707963267949" xyz="-0.02065 -0.125 0.34126"/>
+    <parent link="base_link"/>
+    <child link="camera5_link"/>
+  </joint>
+  <link name="camera5_link">
+   </link>
+  <!-- camera6 = Left-side bottom D435 RGBD sensor (left 1)
+   -->
+  <joint name="camera6_joint" type="fixed">
+    <origin rpy="0 0 1.5707963267949" xyz="-0.0175 0.11 0.1572"/>
+    <parent link="base_link"/>
+    <child link="camera6_link"/>
+  </joint>
+  <link name="camera6_link">
+   </link>
+  <!-- camera7 = Left-side second from bottom D435 RGBD sensor (left 2), symmetric with camera 5
+   -->
+  <joint name="camera7_joint" type="fixed">
+    <origin rpy="1.5707963267949 0.523598775598299 1.5707963267949" xyz="-0.02065 0.125 0.34126"/>
+    <parent link="base_link"/>
+    <child link="camera7_link"/>
+  </joint>
+  <link name="camera7_link">
+   </link>
+  <!-- camera8 = Left-side third from bottom D435 RGBD sensor (left 3)
+   -->
+  <joint name="camera8_joint" type="fixed">
+    <origin rpy="1.5707963267949 0.174532925199433 1.5707963267949" xyz="-0.02065 0.09 0.50568"/>
+    <parent link="base_link"/>
+    <child link="camera8_link"/>
+  </joint>
+  <link name="camera8_link">
+   </link>
+  <!-- camera9 =  Left-side fourth from bottom D435 RGBD sensor (left 4)
+   -->
+  <joint name="camera9_joint" type="fixed">
+    <origin rpy="1.5707963267949 0 1.5707963267949" xyz="-0.02065 0.088 0.66503"/>
+    <parent link="base_link"/>
+    <child link="camera9_link"/>
+  </joint>
+  <link name="camera9_link">
+   </link>
+  <!-- camera10 - Left side fifth from bottom D435 RGBD sensor (left 5)
+   -->
+  <joint name="camera10_joint" type="fixed">
+    <origin rpy="1.5707963267949 0 1.5707963267949" xyz="-0.02065 0.088 0.82484"/>
+    <parent link="base_link"/>
+    <child link="camera10_link"/>
+  </joint>
+  <link name="camera10_link">
+   </link>
+  <!-- camera11 - Left side sixth from bottom D435 RGBD sensor (left 6)
+   -->
+  <joint name="camera11_joint" type="fixed">
+    <origin rpy="1.5707963267949 0 1.5707963267949" xyz="-0.02065 0.088 0.98465"/>
+    <parent link="base_link"/>
+    <child link="camera11_link"/>
+  </joint>
+  <link name="camera11_link">
+   </link>
+  <!-- camera12 - Life side seventh from bottom RGBD sensor (left 7)
+   -->
+  <joint name="camera12_joint" type="fixed">
+    <origin rpy="1.5707963267949 0 1.5707963267949" xyz="-0.02065 0.088 1.14446"/>
+    <parent link="base_link"/>
+    <child link="camera12_link"/>
+  </joint>
+  <link name="camera12_link">
+   </link>
+  <!-- camera13 - Life side eight from bottom RGBD sensor (left 8)
+   -->
+  <joint name="camera13_joint" type="fixed">
+    <origin rpy="1.5707963267949 0 1.5707963267949" xyz="-0.02065 0.088 1.30427"/>
+    <parent link="base_link"/>
+    <child link="camera13_link"/>
+  </joint>
+  <link name="camera13_link">
+   </link>
+  <!-- camera14 - Life side ninth from bottom RGBD sensor (left 9)
+   -->
+  <joint name="camera14_joint" type="fixed">
+    <origin rpy="1.5707963267949 0 1.5707963267949" xyz="-0.02065 0.088 1.46408"/>
+    <parent link="base_link"/>
+    <child link="camera14_link"/>
+  </joint>
+  <link name="camera14_link">
+   </link>
+  <!-- camera15 - Life side tenth from bottom RGBD sensor (left 10)
+   -->
+  <joint name="camera15_joint" type="fixed">
+    <origin rpy="1.5707963267949 0 1.5707963267949" xyz="-0.02065 0.088 1.62389"/>
+    <parent link="base_link"/>
+    <child link="camera15_link"/>
+  </joint>
+  <link name="camera15_link">
+   </link>
+  <!-- camera16 - Life side eleventh from bottom RGBD sensor (left 11)
+   -->
+  <joint name="camera16_joint" type="fixed">
+    <origin rpy="1.5707963267949 0 1.5707963267949" xyz="-0.02065 0.088 1.7837"/>
+    <parent link="base_link"/>
+    <child link="camera16_link"/>
+  </joint>
+  <link name="camera16_link">
+   </link>
+  <!-- Sonars
+   All in mm and all from floor
+   front xyz = 98 0 230.5   so 230.5 - 75.0 = 155.5
+   rear xyz  = -98 0 230.5
+   left xyz  = 0 -113 230.5
+   right xyz = 0 113 230.5
+   -->
+  <link name="sonar_front"/>
+  <link name="sonar_rear"/>
+  <link name="sonar_left"/>
+  <link name="sonar_right"/>
+  <joint name="sonar_front_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.098 0 0.1555"/>
+    <parent link="base_link"/>
+    <child link="sonar_front"/>
+  </joint>
+  <joint name="sonar_rear_joint" type="fixed">
+    <origin rpy="0 0 3.14159265359" xyz="-0.098 0 0.1555"/>
+    <parent link="base_link"/>
+    <child link="sonar_rear"/>
+  </joint>
+  <joint name="sonar_left_joint" type="fixed">
+    <origin rpy="0 0 1.57079632679" xyz="0 0.113 0.1555"/>
+    <parent link="base_link"/>
+    <child link="sonar_left"/>
+  </joint>
+  <joint name="sonar_right_joint" type="fixed">
+    <origin rpy="0 0 -1.57079632679" xyz="0 -0.113 0.1555"/>
+    <parent link="base_link"/>
+    <child link="sonar_right"/>
+  </joint>
+  <!-- MIPI Cameras -->
+  <joint name="mipi_1" type="fixed">
+    <origin rpy="3.14159265358979 0.174532925199433 1.5707963267949" xyz="-0.02065 0.094 0.248"/>
+    <parent link="base_link"/>
+    <child link="mipi1_link"/>
+  </joint>
+  <joint name="mipi_2" type="fixed">
+    <origin rpy="3.14159265358979 0.0872664625997165 1.5707963267949" xyz="-0.02065 0.086 0.40781"/>
+    <parent link="base_link"/>
+    <child link="mipi2_link"/>
+  </joint>
+  <joint name="mipi_3" type="fixed">
+    <origin rpy="3.14159265358979 0 1.5707963267949" xyz="-0.02065 0.083 0.56762"/>
+    <parent link="base_link"/>
+    <child link="mipi3_link"/>
+  </joint>
+  <joint name="mipi_4" type="fixed">
+    <origin rpy="3.14159265358979 0 1.5707963267949" xyz="-0.02065 0.083 0.72743"/>
+    <parent link="base_link"/>
+    <child link="mipi4_link"/>
+  </joint>
+  <joint name="mipi_5" type="fixed">
+    <origin rpy="3.14159265358979 0 1.5707963267949" xyz="-0.02065 0.083 0.88724"/>
+    <parent link="base_link"/>
+    <child link="mipi5_link"/>
+  </joint>
+  <joint name="mipi_6" type="fixed">
+    <origin rpy="3.14159265358979 0 1.5707963267949" xyz="-0.02065 0.083 1.04705"/>
+    <parent link="base_link"/>
+    <child link="mipi6_link"/>
+  </joint>
+  <joint name="mipi_7" type="fixed">
+    <origin rpy="3.14159265358979 0 1.5707963267949" xyz="-0.02065 0.083 1.20686"/>
+    <parent link="base_link"/>
+    <child link="mipi7_link"/>
+  </joint>
+  <joint name="mipi_8" type="fixed">
+    <origin rpy="3.14159265358979 0 1.5707963267949" xyz="-0.02065 0.083 1.36667"/>
+    <parent link="base_link"/>
+    <child link="mipi8_link"/>
+  </joint>
+  <joint name="mipi_9" type="fixed">
+    <origin rpy="3.14159265358979 0 1.5707963267949" xyz="-0.02065 0.083 1.52648"/>
+    <parent link="base_link"/>
+    <child link="mipi9_link"/>
+  </joint>
+  <joint name="mipi_10" type="fixed">
+    <origin rpy="3.14159265358979 0 1.5707963267949" xyz="-0.02065 0.083 1.68629"/>
+    <parent link="base_link"/>
+    <child link="mipi10_link"/>
+  </joint>
+  <joint name="mipi_11" type="fixed">
+    <origin rpy="0 -0.174532925199433 1.5707963267949" xyz="-0.02065 0.083 1.8461"/>
+    <parent link="base_link"/>
+    <child link="mipi11_link"/>
+  </joint>
+  <joint name="mipi_12" type="fixed">
+    <origin rpy="0 -0.453785605518526 1.5707963267949" xyz="-0.02065 0.083 1.8911"/>
+    <parent link="base_link"/>
+    <child link="mipi12_link"/>
+  </joint>
+  <link name="mipi1_link"/>
+  <link name="mipi2_link"/>
+  <link name="mipi3_link"/>
+  <link name="mipi4_link"/>
+  <link name="mipi5_link"/>
+  <link name="mipi6_link"/>
+  <link name="mipi7_link"/>
+  <link name="mipi8_link"/>
+  <link name="mipi9_link"/>
+  <link name="mipi10_link"/>
+  <link name="mipi11_link"/>
+  <link name="mipi12_link"/>
+</robot>
