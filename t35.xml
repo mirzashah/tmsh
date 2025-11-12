@@ -20,7 +20,7 @@
       <material name="grey">
         <color rgba="0.65 0.65 0.65 1"/>
       </material>
-      <origin rpy="0 0 -1.5707963267948966" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
   </link>
   <link name="base_link">
